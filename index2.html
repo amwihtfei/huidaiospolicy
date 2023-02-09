@@ -1,0 +1,29 @@
+<!-- 写个html,请求接口获取富文本并渲染出来 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>辉达纷享</title>
+</head>
+<body>
+    <div id="app">
+        <div id="content"></div>
+    </div>
+    <!-- 引入bootstrap和jquery -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+    //    ajax请求接口获取content并渲染到页面
+        $.ajax({
+            url: 'https://huida.growingsale.cn/app/other?name="隐私协议"',
+            type: 'POST',
+            dataType: 'json',
+            success: function (res) {
+                console.log(res.data.content)
+                $('#content').html(res.data.content)
+            }
+        })
+    </script>
+</html>
