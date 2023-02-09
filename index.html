@@ -1,0 +1,32 @@
+<!-- 写个html,请求接口获取富文本并渲染出来 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>辉达纷享</title>
+</head>
+<body>
+    <div id="app">
+        <div v-html="content"></div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                content: ''
+            },
+            created: function () {
+                axios.post('https://huida.growingsale.cn/app/other',{name:"隐私协议"})
+                    .then(function (response) {
+                        console.log(response);
+                        app.content = response.data.data.content;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        })
+    </script>
+</html>
